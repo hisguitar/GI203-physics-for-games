@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
     public Earth mEarth;
-    private Transform tBird; // Position, Rotation, Scale of Bird
-    private Rigidbody rbBird; // Rigidbody of Bird
     public Vector3 birdForce;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        rbBird = GetComponent<Rigidbody>();
-        rbBird.constraints = RigidbodyConstraints.FreezeRotation;
+    private Transform _tBird; // Position, Rotation, Scale of Bird
+    private Rigidbody _rbBird; // Rigidbody of Bird
 
-        tBird = transform;
+    // Start is called before the first frame update
+    private void Start()
+    {
+        _rbBird = GetComponent<Rigidbody>();
+        _rbBird.constraints = RigidbodyConstraints.FreezeRotation;
+
+        _tBird = transform;
         
-        rbBird.AddForce(birdForce);
+        _rbBird.AddForce(birdForce);
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-       mEarth.eAttract(tBird); 
+       mEarth.EarthAttract(_tBird); 
     }
 }
